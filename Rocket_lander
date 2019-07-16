@@ -1,0 +1,45 @@
+#Mark Stambaugh
+#2019/07/10
+#QI IOT 2019 Summer
+
+
+GRAVITY = -10
+
+position = 100
+velocity = 0
+accelaration = 0
+fuel = 100
+thrust = 0
+
+print "p: %3d V: %3d F: %3d" % (position, velocity, fuel)
+
+
+while position>0:
+    if fuel>0:
+        thrust=int(raw_input("set thrusters(0-20): "))
+        if thrust>=20:
+            thrust=20
+            print"Thrusters at amx(20)!"
+        if thrust<0:
+            thrust=0
+            print"No thrusters(0)!"
+        if thrust>fuel:
+            thrust=fuel
+            print"Out if fuel! Thrusters at {0}".format(thrust)
+    else:
+        print ("No fuel --rocket is in free-fall!")
+        thrust=0
+
+    fuel=fuel=thrust
+    accelaration=GRAVITY+thrust
+    position=position+velocity+0.5*accelaration
+    if position<0:
+        position=0
+    velocity=velocity+accelaration
+
+    print "p: %3d V: %3d F: %3d" % (position, velocity, fuel)
+
+if velocity< -3:
+    print "Rocket crashed! Velocity was {0} m/s".format(velocity)
+else:
+    print "Landing successful!"
